@@ -1,0 +1,12 @@
+container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    padding: 8px;
+    font-size: 14px;
+    width: 30%;
+
+}
