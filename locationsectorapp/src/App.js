@@ -1,11 +1,12 @@
 
 import './App.css';
+import Location from './SetLocation/Location';
 
 function App() {
   return (
-   <>
-    hi
-   </>
+   <center>
+    <Location/>
+   </center>
   );
 }
 
