@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
-import styles from "./Search.module.css"
+import React, { useState } from 'react';
+import styles from "./Search.module.css";
 
-function Search() {
-    const [search,setsearch] = useState("")
+function Search({ onSearch }) {
+  const [search, setSearch] = useState("");
 
-    const handelsearch = (e) => {
-        setsearch(e.target.value)
-    }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <center className={styles.container}>
-      <input onChange={handelsearch} className={styles.search} placeholder='Search for countries...' value={search}/>
+      <input
+        onChange={handleSearch}
+        className={styles.search}
+        placeholder='Search for countries...'
+        value={search}
+      />
     </center>
-  )
+  );
 }
 
-export default Search
+export default Search;
