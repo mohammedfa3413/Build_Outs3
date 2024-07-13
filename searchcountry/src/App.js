@@ -16,9 +16,9 @@ function App() {
         const res = await axios.get("https://restcountries.com/v3.1/all");
         setCountry(res.data);
         setFilteredCountry(res.data);
-        setLoading(false);
       } catch (err) {
         setError(err);
+      } finally {
         setLoading(false);
       }
     };
@@ -27,10 +27,15 @@ function App() {
   }, []);
 
   const handleSearch = (searchTerm) => {
-    const filtered = country.filter(c =>
-      c.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCountry(filtered);
+    const trimmedTerm = searchTerm.trim().toLowerCase();
+    if (!trimmedTerm) {
+      setFilteredCountry(country);
+    } else {
+      const filtered = country.filter(c =>
+        c.name.common.toLowerCase().includes(trimmedTerm)
+      );
+      setFilteredCountry(filtered);
+    }
   };
 
   if (loading) {
@@ -38,7 +43,7 @@ function App() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}. Please try again later.</div>;
   }
 
   return (
